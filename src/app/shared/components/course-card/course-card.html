@@ -1,1 +1,31 @@
-<p>course-card works!</p>
+<div class="course-card">
+
+    <div class="course-code">
+        {{ course.courseCode }}
+    </div>
+
+    <div class="course-name">
+        {{ course.courseName }}
+    </div>
+
+    <div class="course-points">
+        {{ course.points }} hp
+    </div>
+
+    <div class="course-subject">
+        {{ course.subject }}
+    </div>
+
+    @if (showAddButton) {
+    <button>
+        Lägg till
+    </button>
+    }
+
+    @if (!showAddButton) {
+    <button>
+        Ta bort
+    </button>
+    }
+
+</div>

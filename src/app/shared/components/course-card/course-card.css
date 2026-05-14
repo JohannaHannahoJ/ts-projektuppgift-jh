@@ -1,0 +1,27 @@
+.course-card {
+    display: grid;
+    grid-template-columns: 150px 1fr 100px 1fr auto;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    padding: 1rem;
+
+    border-bottom: 1px solid var(--highlight);
+}
+
+@media (max-width: 768px) {
+
+    .course-card {
+        grid-template-columns: 1fr;
+
+        border: 1px solid var(--highlight);
+        border-radius: 10px;
+
+        margin-bottom: 1rem;
+
+        background: white;
+    }
+
+}
