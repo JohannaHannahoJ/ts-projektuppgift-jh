@@ -1,1 +1,5 @@
-<p>search-bar works!</p>
+<section class="searchFilter">
+    <label for="searchFilter">Filtrera:</label>
+    <input id="searchFilter" type="text" placeholder="Sök kurskod eller kursnamn"
+        (input)="searchChange.emit($any($event.target).value)" />
+</section>

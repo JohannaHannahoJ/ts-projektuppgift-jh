@@ -1,3 +1,10 @@
-@for (course of courseService.courses(); track course.courseCode) {
+<app-search-bar
+  (searchChange)="filterText.set($event)">
+</app-search-bar>
+
+<p>DEBUG: {{ filterText() }}</p>
+
+<!-- trackar på både kurskod och ämneskod, eftersom kurskod inte är unik-->
+@for (course of sortedCourses(); track course.courseCode + course.subjectCode) {
   <app-course-card [course]="course" [showAddButton]="true"></app-course-card>
 }
