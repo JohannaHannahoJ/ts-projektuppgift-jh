@@ -2,10 +2,11 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { CourseService } from '../../core/services/course.service';
 import { CourseCard } from '../../shared/components/course-card/course-card';
 import { SearchBar } from '../../shared/components/search-bar/search-bar';
+import { SubjectFilter } from '../../shared/components/subject-filter/subject-filter';
 
 @Component({
   selector: 'app-courses',
-  imports: [CourseCard, SearchBar],
+  imports: [CourseCard, SearchBar, SubjectFilter],
   templateUrl: './courses.html',
   styleUrl: './courses.css',
 })
@@ -76,6 +77,13 @@ export class Courses {
       return a[field] < b[field] ? 1 : -1;
     });
 
+  });
+
+  // skapa en array med alla ämnen
+  subjects = computed(() => {
+    const courses = this.courseService.courses();
+
+    return [...new Set(courses.map(c => c.subject))];
   });
 
   // lagra antal kurser i arrayen

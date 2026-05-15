@@ -46,7 +46,8 @@ main {
 
 button:focus-visible,
 a:focus-visible,
-input:focus-visible {
+input:focus-visible,
+select:focus-visible {
     outline: 2px solid var(--wakeup);
     outline-offset: 3px;
 }
