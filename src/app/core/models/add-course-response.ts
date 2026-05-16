@@ -1,1 +1,3 @@
-export interface AddCourseResponse {}
+export interface AddCourseResponse {
+    message: string;
+}
