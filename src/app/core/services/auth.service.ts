@@ -34,4 +34,10 @@ export class AuthService {
         })
       )
   }
+  // Logga ut
+  logout(): void {
+    this.token.set("");
+    localStorage.removeItem("token");
+    this.router.navigate(["/home"]);
+  }
 }
