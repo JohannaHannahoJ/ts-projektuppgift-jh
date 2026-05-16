@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { User } from '../models/user';
 import { Observable, tap } from 'rxjs';
 import { RegisterResponse } from '../models/register-response';
 import { LoginResponse } from '../models/login-response';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,9 @@ export class AuthService {
   url: string = "http://localhost:3000"
 
   token = signal(localStorage.getItem("token") || "");
+  isLoggedIn = computed(() => !!this.token());
+
+  router = inject(Router);
 
   // Skapa konto
   register(user: User): Observable<RegisterResponse> {
