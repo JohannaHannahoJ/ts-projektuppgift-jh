@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './button.html',
   styleUrl: './button.css',
 })
-export class Button {}
+export class Button {
+  // låt button ta emot type som input
+  @Input() type: 'button' | 'submit' = 'button';
+}

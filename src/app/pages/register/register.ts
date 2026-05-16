@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { RegisterResponse } from '../../core/models/register-response';
+import { Button } from '../../shared/components/button/button';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule],
+  imports: [FormsModule, Button],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })

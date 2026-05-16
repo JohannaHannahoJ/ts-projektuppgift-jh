@@ -13,15 +13,15 @@
         <div class="form-row">
             <label for="password">Lösenord</label>
 
-            <input type="password" id="password" name="password" [(ngModel)]="password" required autocomplete="new-password">
+            <input type="password" id="password" name="password" [(ngModel)]="password" required
+                autocomplete="new-password">
         </div>
 
         <p class="message">{{ message() }}</p>
 
-        <button type="submit">
+        <app-button type="submit">
             Skapa konto
-        </button>
-
+        </app-button>
     </form>
 
 
