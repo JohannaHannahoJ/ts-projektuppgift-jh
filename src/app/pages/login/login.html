@@ -1,1 +1,30 @@
-<p>login works!</p>
+<section class="container">
+
+    <h2>Logga in</h2>
+
+    <form (ngSubmit)="login()">
+
+        <div class="form-row">
+            <label for="username">Användarnamn</label>
+
+            <input type="text" id="username" name="username" [(ngModel)]="username" required autocomplete="username">
+        </div>
+
+        <div class="form-row">
+            <label for="password">Lösenord</label>
+
+            <input type="password" id="password" name="password" [(ngModel)]="password" required
+                autocomplete="new-password">
+        </div>
+
+        <p class="message">{{ message() }}</p>
+
+        <app-button type="submit">
+            Logga in
+        </app-button>
+
+    </form>
+
+
+
+</section>

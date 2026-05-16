@@ -1,18 +1,33 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { User } from '../models/user';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { RegisterResponse } from '../models/register-response';
+import { LoginResponse } from '../models/login-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-    private http = inject(HttpClient); // används för http-anrop till backend
-    url: string = "http://localhost:3000"
+  private http = inject(HttpClient); // används för http-anrop till backend
+  url: string = "http://localhost:3000"
 
+  token = signal(localStorage.getItem("token") || "");
+
+  // Skapa konto
   register(user: User): Observable<RegisterResponse> {
     // User skickas med i request body, svaret typas som RegisterResponse
     return this.http.post<RegisterResponse>(this.url + "/users/register", user);
+  }
+
+  // Logga in
+  login(user: User): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(this.url + "/users/login", user)
+      .pipe(
+        tap(response => {
+          this.token.set(response.token);
+          localStorage.setItem("token", response.token);
+        })
+      )
   }
 }
