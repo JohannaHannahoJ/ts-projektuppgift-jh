@@ -38,6 +38,7 @@ export class AuthService {
   logout(): void {
     this.token.set("");
     localStorage.removeItem("token");
+    localStorage.removeItem("flashMessage");
     this.router.navigate(["/home"]);
   }
 }
