@@ -6,6 +6,7 @@ import { SubjectFilter } from '../../shared/components/subject-filter/subject-fi
 import { ScheduleService } from '../../core/services/schedule.service';
 import { Course } from '../../core/models/course';
 import { ScheduledCourse } from '../../core/models/scheduled-course';
+import { AddCourseResponse } from '../../core/models/add-course-response';
 
 @Component({
   selector: 'app-courses',
@@ -112,13 +113,13 @@ export class Courses {
     }
 
     this.scheduleService.addCourse(courseData).subscribe({
-      next: (response) => {
+      next: (response: AddCourseResponse) => {
         this.message.set(response.message);
       },
 
       error: (error) => {
         console.log(error);
-        this.message.set(error.error.message);
+        this.message.set(error.error.message || "Något gick fel");
       }
 
     });
