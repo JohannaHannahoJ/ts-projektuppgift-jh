@@ -20,7 +20,8 @@ Applikationen är uppdelad i core, shared och pages för att separera logik, åt
 - Responsiv design
 ### Extrafuktioner
 - Startsida med information om lärosätet
-- Lagring av ramschema i localStorage
+- Lagring av ramschema i en databas
+- Sortering av data i lagrat ramschema
 - Inloggning och skyddade sidor
 - Paginering
 
