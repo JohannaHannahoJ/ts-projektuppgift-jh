@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 import { ScheduledCourse } from '../models/scheduled-course';
 import { Observable } from 'rxjs';
 import { AddCourseResponse } from '../models/add-course-response';
+import { Course } from '../models/course';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +19,15 @@ export class ScheduleService {
     return {
       "Authorization": `Bearer ${token}` // skapa headers
     };
+  }
+
+  //Hämtar courses från api och gör om observable till signal
+  getCourses(): Signal<Course[]> {
+
+    // GET-request med auth headers
+    const courses$ = this.http.get<Course[]>(this.url + '/courses', { headers: this.getHeaders() });
+    // gör om observable till signal
+    return toSignal(courses$, { initialValue: [] });
   }
 
   // lägg till kurs

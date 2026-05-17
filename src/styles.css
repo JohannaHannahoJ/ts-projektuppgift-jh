@@ -52,6 +52,27 @@ select:focus-visible {
     outline-offset: 3px;
 }
 
+.intro {
+  margin-bottom: 2rem;
+}
+
+.intro h2 {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.intro p {
+  max-width: 60ch;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .popup-message {
   position: fixed;
   top: 50%;

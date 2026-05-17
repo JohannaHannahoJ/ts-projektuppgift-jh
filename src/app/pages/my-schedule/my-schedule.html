@@ -1,1 +1,13 @@
-<p>my-schedule works!</p>
+<div class="intro">
+<h2>Dina kurser</h2>
+<p>Lägg till eller ta bort kurser som du behagar. Du kan läsa så många eller få kurser som du önskar</p>
+</div>
+<p class="welcome">{{ message() }}</p>
+
+
+@for (course of courses(); track course.courseCode) {
+  <app-course-card
+    [course]="course"
+    [showAddButton]="false">
+  </app-course-card>
+}
