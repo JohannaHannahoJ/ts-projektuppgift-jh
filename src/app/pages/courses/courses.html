@@ -13,6 +13,9 @@
   </app-subject-filter>
 </div>
 
+<app-sort-data (sortChange)="setSort($event)">
+</app-sort-data>
+
 @if (message()) {
 <div class="popup-message">
   {{ message() }}

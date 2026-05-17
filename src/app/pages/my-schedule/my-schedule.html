@@ -4,8 +4,10 @@
 </div>
 <p class="welcome">{{ message() }}</p>
 
+<app-sort-data (sortChange)="setSort($event)">
+</app-sort-data>
 
-@for (course of courses(); track course.courseCode) {
+@for (course of sortedCourses(); track course.courseCode) {
   <app-course-card
     [course]="course"
     [showAddButton]="false">

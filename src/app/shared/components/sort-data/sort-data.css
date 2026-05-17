@@ -1,0 +1,33 @@
+.sort-section {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin: 1rem 0;
+}
+
+.sort-title {
+    font-weight: 600;
+    margin: 0;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+button:hover {
+    color: var(--wakeup);
+}
+
+@media (max-width: 600px) {
+    .sort-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem
+    }
+}

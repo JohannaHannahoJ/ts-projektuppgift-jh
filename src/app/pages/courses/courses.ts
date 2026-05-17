@@ -7,10 +7,11 @@ import { ScheduleService } from '../../core/services/schedule.service';
 import { Course } from '../../core/models/course';
 import { ScheduledCourse } from '../../core/models/scheduled-course';
 import { AddCourseResponse } from '../../core/models/add-course-response';
+import { SortData } from '../../shared/components/sort-data/sort-data';
 
 @Component({
   selector: 'app-courses',
-  imports: [CourseCard, SearchBar, SubjectFilter],
+  imports: [CourseCard, SearchBar, SubjectFilter, SortData ],
   templateUrl: './courses.html',
   styleUrl: './courses.css',
 })
@@ -36,7 +37,7 @@ export class Courses {
     console.log('CURRENT COURSES:', this.courseService.courses());
   }
 
-  // Funktion som körs när användaren klickar på ett av <th>-fälten
+  // Funktion som körs när användaren klickar på en av sorteringsknapparna
   setSort(field: "courseCode" | "courseName" | "points" | "subject") {
 
     if (this.sortField() === field) {
