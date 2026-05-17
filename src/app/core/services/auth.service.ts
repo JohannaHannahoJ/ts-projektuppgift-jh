@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private http = inject(HttpClient); // används för http-anrop till backend
-  url: string = "http://localhost:3000"
+  url: string = "http://localhost:3000";
 
   token = signal(localStorage.getItem("token") || "");
   isLoggedIn = computed(() => !!this.token());

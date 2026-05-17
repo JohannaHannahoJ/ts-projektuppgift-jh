@@ -1,23 +1,26 @@
 <div class="intro">
-<h2>Våra kurser</h2>
-<p>
-  Som student på MDV väljer du fritt mellan våra kurser.
-</p>
+  <h2>Våra kurser</h2>
+  <p>
+    Som student på MDV väljer du fritt mellan våra kurser.
+  </p>
 </div>
 
 <div class="filter-row">
-<app-search-bar
-  (searchChange)="filterText.set($event)">
-</app-search-bar>
+  <app-search-bar (searchChange)="filterText.set($event)">
+  </app-search-bar>
 
-<app-subject-filter
-  [subjects]="subjects()"
-  (subjectChange)="selectedSubject.set($event)">
-</app-subject-filter>
+  <app-subject-filter [subjects]="subjects()" (subjectChange)="selectedSubject.set($event)">
+  </app-subject-filter>
 </div>
 
+@if (message()) {
+<p class="message">
+  {{ message() }}
+</p>
+}
 
-<!-- trackar på både kurskod och ämneskod, eftersom kurskod inte är unik-->
-@for (course of sortedCourses(); track course.courseCode + course.subjectCode) {
-  <app-course-card [course]="course" [showAddButton]="true"></app-course-card>
+<!-- trackar på både kurskod och ämne, eftersom kurskod inte är unik-->
+@for (course of sortedCourses(); track course.courseCode + course.subject) {
+<app-course-card [course]="course" [showAddButton]="true" (addCourse)="addCourseToSchedule($event)">
+</app-course-card>
 }

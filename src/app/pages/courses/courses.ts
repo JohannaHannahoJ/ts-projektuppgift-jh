@@ -3,6 +3,9 @@ import { CourseService } from '../../core/services/course.service';
 import { CourseCard } from '../../shared/components/course-card/course-card';
 import { SearchBar } from '../../shared/components/search-bar/search-bar';
 import { SubjectFilter } from '../../shared/components/subject-filter/subject-filter';
+import { ScheduleService } from '../../core/services/schedule.service';
+import { Course } from '../../core/models/course';
+import { ScheduledCourse } from '../../core/models/scheduled-course';
 
 @Component({
   selector: 'app-courses',
@@ -12,6 +15,8 @@ import { SubjectFilter } from '../../shared/components/subject-filter/subject-fi
 })
 export class Courses {
   courseService = inject(CourseService)
+  scheduleService = inject(ScheduleService);
+
   // signal som lagrar vilket av fälten som ska sorteras
   sortField = signal<"courseCode" | "courseName" | "points" | "subject">("courseCode");
   // signal som lagrar om sorteringen är stigande/fallande
@@ -20,6 +25,8 @@ export class Courses {
   filterText = signal("");
   // lagrar ämne som anv valt att filtrera på, utan val visa alla ämnen
   selectedSubject = signal("all");
+  // signal för meddelanden
+  message = signal("");
 
   ngOnInit() {
     console.log('FILTER TEXT INIT:', this.filterText());
@@ -88,5 +95,32 @@ export class Courses {
 
   // lagra antal kurser i arrayen
   totalCourses = computed(() => this.sortedCourses().length);
+
+  addCourseToSchedule(course: Course): void {
+
+    console.log("Kilck");
+        console.log(course);
+
+
+    // definiera objektet för sparade kurser och vilka värden som ska skickas med
+    let courseData: ScheduledCourse = {
+      courseCode: course.courseCode,
+      courseName: course.courseName,
+      points: course.points,
+      subject: course.subject,
+      syllabus: course.syllabus
+    }
+
+    this.scheduleService.addCourse(courseData).subscribe({
+      next: (response) => {
+        this.message.set(response.message);
+      },
+
+      error: (error) => {
+        this.message.set(error.error.message);
+      }
+    });
+
+  }
 
 }

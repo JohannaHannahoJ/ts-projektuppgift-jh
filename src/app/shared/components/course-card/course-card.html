@@ -17,15 +17,15 @@
     </div>
 
     @if (showAddButton) {
-    <button>
+    <app-button type="button" (click)="addCourse.emit(course)">
         Lägg till
-    </button>
+    </app-button>
     }
 
     @if (!showAddButton) {
-    <button>
+    <app-button type="submit">
         Ta bort
-    </button>
+    </app-button>
     }
 
 </div>
