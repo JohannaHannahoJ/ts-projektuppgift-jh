@@ -99,7 +99,7 @@ export class Courses {
   addCourseToSchedule(course: Course): void {
 
     console.log("Kilck");
-        console.log(course);
+    console.log(course);
 
 
     // definiera objektet för sparade kurser och vilka värden som ska skickas med
@@ -117,9 +117,15 @@ export class Courses {
       },
 
       error: (error) => {
+        console.log(error);
         this.message.set(error.error.message);
       }
+
     });
+
+    setTimeout(() => {
+      this.message.set("");
+    }, 2500);
 
   }
 
