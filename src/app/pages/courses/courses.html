@@ -22,6 +22,14 @@
 </div>
 }
 
+<p class="course-count">
+  @if (totalCourses() === allCourses()) {
+  Visar {{ allCourses() }} kurser.
+  } @else {
+  Visar {{ totalCourses() }} kurser av {{ allCourses() }} kurser.
+  }
+</p>
+
 <!-- trackar på både kurskod och ämne, eftersom kurskod inte är unik-->
 @for (course of sortedCourses(); track course.courseCode + course.subject) {
 <app-course-card [course]="course" [showAddButton]="true" (addCourse)="addCourseToSchedule($event)">

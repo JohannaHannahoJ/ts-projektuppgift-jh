@@ -11,7 +11,7 @@ import { SortData } from '../../shared/components/sort-data/sort-data';
 
 @Component({
   selector: 'app-courses',
-  imports: [CourseCard, SearchBar, SubjectFilter, SortData ],
+  imports: [CourseCard, SearchBar, SubjectFilter, SortData],
   templateUrl: './courses.html',
   styleUrl: './courses.css',
 })
@@ -98,11 +98,10 @@ export class Courses {
   // lagra antal kurser i arrayen
   totalCourses = computed(() => this.sortedCourses().length);
 
+  // lagra totalt antal kurser innan filtrering
+  allCourses = computed(() => this.courseService.courses().length);
+
   addCourseToSchedule(course: Course): void {
-
-    console.log("Kilck");
-    console.log(course);
-
 
     // definiera objektet för sparade kurser och vilka värden som ska skickas med
     let courseData: ScheduledCourse = {
