@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -6,4 +6,13 @@ import { Component } from '@angular/core';
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
-export class Footer {}
+export class Footer {
+  username = signal("");
+
+  ngOnInit() {
+    const stored = localStorage.getItem("username");
+    if (stored) {
+      this.username.set(stored);
+    }
+  }
+}

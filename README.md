@@ -23,6 +23,7 @@ Applikationen är uppdelad i core, shared och pages för att separera logik, åt
 - Lagring av ramschema i en databas
 - Sortering av data i lagrat ramschema
 - Inloggning och skyddade sidor
+- info om inloggad användare i footer
 - Paginering
 
 

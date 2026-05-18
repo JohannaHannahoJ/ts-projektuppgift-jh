@@ -39,6 +39,9 @@ export class Login {
       next: (response: LoginResponse) => {
         localStorage.setItem("flashMessage", "Välkommen " + this.username + "!");
         localStorage.setItem("token", response.token);
+        localStorage.setItem("username", this.username);
+
+        console.log("LOGIN USERNAME:", this.username);
 
         this.router.navigate(["/my-schedule"]);
       },

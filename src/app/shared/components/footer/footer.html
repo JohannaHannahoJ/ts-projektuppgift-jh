@@ -1,3 +1,9 @@
 <footer>
-  <p>© joha2102@student.miun.se</p>
+  @if (username()) {
+    <p class="logged-in-user">
+      Inloggad som: {{ username() }}
+    </p>
+  } @else {
+    <p>© joha2102@student.miun.se</p>
+  }
 </footer>
