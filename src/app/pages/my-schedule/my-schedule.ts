@@ -44,7 +44,6 @@ export class MySchedule {
       this.sortDirection.set("asc");
     }
 
-
   }
   // returnerar en sorterad kopia av listan av lagrade kurser
   sortedCourses = computed(() => {
@@ -63,6 +62,17 @@ export class MySchedule {
       // fallande
       return a[field] < b[field] ? 1 : -1;
     });
+  });
+
+  // skapar en computed signal som uppdateras om valda-kurser ändras
+  totalPoints = computed(() => {
+    const courses = this.courses(); // hämta in aktuell kurslista
+
+    // summerar kurspoängen för kurserna
+    return courses.reduce((sum, course) => {
+      // gör om från string till tal och lägg till poäng till totalen, returnera = om null/undefined
+      return sum + (Number(course.points) || 0);
+    }, 0); // startvärde för summeringen
   });
 
 }
