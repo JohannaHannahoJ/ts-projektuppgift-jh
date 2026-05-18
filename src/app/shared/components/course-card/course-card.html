@@ -5,7 +5,12 @@
     </div>
 
     <div class="course-name">
-        {{ course.courseName }}
+        <a class="course-link" [href]="course.syllabus" target="_blank" rel="noopener noreferrer" aria-label="Öppnar kursplan för {{ course.courseName }} i ny flik">
+            <span class="course-title">
+                {{ course.courseName }}
+            </span>
+            <img class="external-icon" src="assets/external-link.svg" alt="" aria-hidden="true">
+        </a>
     </div>
 
     <div class="course-points">
