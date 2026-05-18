@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,12 +8,5 @@ import { Component, signal } from '@angular/core';
   styleUrl: './footer.css',
 })
 export class Footer {
-  username = signal("");
-
-  ngOnInit() {
-    const stored = localStorage.getItem("username");
-    if (stored) {
-      this.username.set(stored);
-    }
-  }
+  authService = inject(AuthService);
 }

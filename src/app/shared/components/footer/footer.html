@@ -1,9 +1,9 @@
 <footer>
-  @if (username()) {
-    <p class="logged-in-user">
-      Inloggad som: {{ username() }}
-    </p>
+  @if (authService.username()) {
+  <p class="logged-in-user">
+    Inloggad som: {{ authService.username() }}
+  </p>
   } @else {
-    <p>© joha2102@student.miun.se</p>
+  <p>© joha2102@student.miun.se</p>
   }
 </footer>

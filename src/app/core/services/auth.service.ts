@@ -14,6 +14,7 @@ export class AuthService {
   url: string = "http://localhost:3000";
 
   token = signal(localStorage.getItem("token") || "");
+  username = signal(localStorage.getItem("username") || "");
   isLoggedIn = computed(() => !!this.token());
 
   router = inject(Router);
@@ -30,14 +31,18 @@ export class AuthService {
       .pipe(
         tap(response => {
           this.token.set(response.token);
+          this.username.set(user.username);
           localStorage.setItem("token", response.token);
+          localStorage.setItem("username", user.username);
         })
       )
   }
   // Logga ut
   logout(): void {
     this.token.set("");
+    this.username.set("");
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     localStorage.removeItem("flashMessage");
     this.router.navigate(["/home"]);
   }
