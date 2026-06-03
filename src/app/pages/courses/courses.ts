@@ -31,10 +31,7 @@ export class Courses {
   message = signal("");
 
   ngOnInit() {
-    console.log('FILTER TEXT INIT:', this.filterText());
     this.courseService.loadCourses();
-
-    console.log('CURRENT COURSES:', this.courseService.courses());
   }
 
   // Funktion som körs när användaren klickar på en av sorteringsknapparna
