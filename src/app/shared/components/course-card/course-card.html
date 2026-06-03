@@ -28,7 +28,7 @@
     }
 
     @if (!showAddButton) {
-    <app-button type="submit">
+    <app-button type="submit" (click)="deleteCourse.emit(course)">
         Ta bort
     </app-button>
     }

@@ -10,9 +10,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './course-card.css',
 })
 export class CourseCard {
+  // kurs som ska visas i kortet
   @Input() course!: Course;
-
+  // styr om "Lägg till"-knappen visas
   @Input() showAddButton = true;
 
+  // skickar kurs för tillägg i schema
   @Output() addCourse = new EventEmitter<Course>();
+  // skickar kurs för borttagning från schema
+  @Output() deleteCourse = new EventEmitter<Course>();
 }
