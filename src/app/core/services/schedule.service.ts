@@ -11,7 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class ScheduleService {
   private http = inject(HttpClient); // lägg till httpClient så att det går att kommunicera med api
-  url: string = "http://localhost:3000";
+  url: string = "https://ts-projektuppgift-jh-postgres.onrender.com";
 
   // funktion för headers och token för auth
   private getHeaders() {
