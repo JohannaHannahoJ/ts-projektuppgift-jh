@@ -1,1 +1,12 @@
-<p>subject-filter works!</p>
+<section class="subjectFilter">
+
+    <label for="subject">Ämne:</label>
+
+    <select id="subject" (change)="subjectChange.emit($any($event.target).value)">
+        <option value="all">Alla ämnen</option>
+        @for (subject of subjects; track subject) {
+        <option [value]="subject">{{ subject }}</option>
+        }
+    </select>
+
+</section>

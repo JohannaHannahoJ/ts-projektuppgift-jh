@@ -1,1 +1,14 @@
-<p>navbar works!</p>
+<nav>
+  <ul>
+    <li><a routerLink="courses" routerLinkActive="current">Kurser</a></li>
+    @if(authService.isLoggedIn()) {
+    <li><a routerLink="my-schedule" routerLinkActive="current">Schema</a></li>
+    <li><button type="button" (click)="logout()">
+        Logga ut
+      </button></li>
+    } @else {
+    <li><a routerLink="login" routerLinkActive="current">Logga in</a></li>
+    <li><a routerLink="register" routerLinkActive="current">Registrera</a></li>
+    }
+  </ul>
+</nav>

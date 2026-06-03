@@ -1,0 +1,23 @@
+<section class="sort-data">
+
+    <p class="sort-title">Sortera på:</p>
+
+    <div class="sort-section">
+        <button (click)="sortChange.emit('courseCode')">
+            Kurskod
+        </button>
+
+        <button (click)="sortChange.emit('courseName')">
+            Kursnamn
+        </button>
+
+        <button (click)="sortChange.emit('points')">
+            Poäng
+        </button>
+
+        <button (click)="sortChange.emit('subject')">
+            Ämne
+        </button>
+    </div>
+
+</section>

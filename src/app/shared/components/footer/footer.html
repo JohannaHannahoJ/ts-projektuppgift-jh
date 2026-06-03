@@ -1,1 +1,9 @@
-<p>footer works!</p>
+<footer>
+  @if (authService.username()) {
+  <p class="logged-in-user">
+    Inloggad som: {{ authService.username() }}
+  </p>
+  } @else {
+  <p>© joha2102@student.miun.se</p>
+  }
+</footer>

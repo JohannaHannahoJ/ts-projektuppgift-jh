@@ -1,1 +1,90 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text: #000000;
+    --bg: #f1f1f1;
+    --highlight: #d9d9d9;
+    --regone: #11fffb;
+    --regtwo: #f88f1f;
+    --wakeup: #df50c5;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    margin: 0;
+}
+
+app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    color: var(--text);
+    background-color: var(--bg);
+    font-family: "Marcellus", serif;
+    line-height: 1.5;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--wakeup);
+    outline-offset: 3px;
+}
+
+.intro {
+  margin-bottom: 2rem;
+}
+
+.intro h2 {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.intro p {
+  max-width: 60ch;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.popup-message {
+  position: fixed;
+  top: 50%;
+  right: 40%;
+
+  background: var(--regtwo);
+  color: var(--text);
+
+  padding: 2rem;
+  border-radius: 5px;
+
+  z-index: 9999;
+
+  font-size: 1.3rem;
+}

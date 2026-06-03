@@ -1,0 +1,5 @@
+.logo img {
+    width: clamp(40px, 20vw, 55px);
+    /* flytande bredd */
+    height: auto;
+}

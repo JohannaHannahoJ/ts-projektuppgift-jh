@@ -1,0 +1,14 @@
+.course-count {
+  font-size: 90%;
+  padding: 1rem;
+  border-top: 1px solid var(--highlight);
+  border-bottom: 1px solid var(--highlight);
+}
+
+@media (min-width: 768px) {
+
+  .filter-row {
+    flex-direction: row;
+    align-items: end;
+  }
+}

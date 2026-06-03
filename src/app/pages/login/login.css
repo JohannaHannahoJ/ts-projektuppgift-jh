@@ -1,0 +1,29 @@
+h2 {
+    margin-bottom: 2rem;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+ input {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  font-family: inherit;
+  border: 1px solid var(--highlight);
+}

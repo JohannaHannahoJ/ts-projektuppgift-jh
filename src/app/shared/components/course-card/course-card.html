@@ -1,1 +1,36 @@
-<p>course-card works!</p>
+<div class="course-card">
+
+    <div class="course-code">
+        {{ course.courseCode }}
+    </div>
+
+    <div class="course-name">
+        <a class="course-link" [href]="course.syllabus" target="_blank" rel="noopener noreferrer" aria-label="Öppnar kursplan för {{ course.courseName }} i ny flik">
+            <span class="course-title">
+                {{ course.courseName }}
+            </span>
+            <img class="external-icon" src="assets/external-link.svg" alt="" aria-hidden="true">
+        </a>
+    </div>
+
+    <div class="course-points">
+        {{ course.points | number:'1.0-1' }} hp
+    </div>
+
+    <div class="course-subject">
+        {{ course.subject }}
+    </div>
+
+    @if (showAddButton) {
+    <app-button type="button" (click)="addCourse.emit(course)">
+        Lägg till
+    </app-button>
+    }
+
+    @if (!showAddButton) {
+    <app-button type="submit" (click)="deleteCourse.emit(course)">
+        Ta bort
+    </app-button>
+    }
+
+</div>
