@@ -4,6 +4,7 @@ import { ScheduledCourse } from '../models/scheduled-course';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../models/api-response';
 import { Course } from '../models/course';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,9 @@ export class ScheduleService {
 
   // signal som lagrar kurser
   courses = signal<Course[]>([]);
+
+  // för felhantering och utloggning
+  authService = inject(AuthService);
 
   // funktion för headers och token för auth
   private getHeaders() {
@@ -28,7 +32,10 @@ export class ScheduleService {
     this.http.get<Course[]>(this.url + '/courses', { headers: this.getHeaders() })
       .subscribe({
         next: (data) => this.courses.set(data),
-        error: (err) => console.error(err)
+        error: (error) => {
+          this.authService.handleAuthError(error);
+          console.error(error)
+        }
       });
   }
 

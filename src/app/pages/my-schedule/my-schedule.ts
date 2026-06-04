@@ -90,8 +90,8 @@ export class MySchedule {
       },
       // felhantering
       error: (error) => {
-        // auth-fel, logga ut och redirect -fixa sen!
-        //this.scheduleService.authService.handleAuthError(error);
+        // auth-fel, logga ut och redirect
+        this.scheduleService.authService.handleAuthError(error);
         this.message.set(error.error?.message ?? "Kunde inte ta bort kursen.");
       }
     });
