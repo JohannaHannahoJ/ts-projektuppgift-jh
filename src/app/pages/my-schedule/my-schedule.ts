@@ -3,7 +3,7 @@ import { ScheduleService } from '../../core/services/schedule.service';
 import { CourseCard } from '../../shared/components/course-card/course-card';
 import { SortData } from '../../shared/components/sort-data/sort-data';
 import { ScheduledCourse } from '../../core/models/scheduled-course';
-import { CourseService } from '../../core/services/course.service';
+import { Course } from '../../core/models/course';
 
 @Component({
   selector: 'app-my-schedule',
@@ -15,7 +15,7 @@ export class MySchedule {
   scheduleService = inject(ScheduleService);
 
   // hämtar kurser från databas och gör dem till signal
-  courses = this.scheduleService.getCourses();
+  courses = this.scheduleService.courses;
 
   // signal för meddelanden
   message = signal("");
@@ -24,8 +24,9 @@ export class MySchedule {
   // signal som lagrar om sorteringen är stigande/fallande
   sortDirection = signal<"asc" | "desc">("asc");
 
-  // hämtar meddelande från localstorage som skrivs ut till UI
+  // laddar in kurser och hämtar ev meddelande
   ngOnInit() {
+    this.scheduleService.loadCourses();
     const msg = localStorage.getItem("flashMessage");
 
     if (msg) {
@@ -71,7 +72,7 @@ export class MySchedule {
     const courses = this.courses(); // hämta in aktuell kurslista
 
     // summerar kurspoängen för kurserna
-    return courses.reduce((sum, course) => {
+    return courses.reduce((sum: number, course: Course) => {
       // gör om från string till tal och lägg till poäng till totalen, returnera = om null/undefined
       return sum + (Number(course.points) || 0);
     }, 0); // startvärde för summeringen
@@ -85,7 +86,7 @@ export class MySchedule {
       next: () => {
         this.message.set("Kurs borttagen.");
         // fulfix-- ladda om sidan
-        window.location.reload();
+        this.scheduleService.loadCourses();
       },
       // felhantering
       error: (error) => {
