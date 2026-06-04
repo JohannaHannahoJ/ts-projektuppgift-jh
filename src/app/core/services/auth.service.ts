@@ -37,6 +37,7 @@ export class AuthService {
         })
       )
   }
+
   // Logga ut
   logout(): void {
     this.token.set("");
@@ -45,5 +46,12 @@ export class AuthService {
     localStorage.removeItem("username");
     localStorage.removeItem("flashMessage");
     this.router.navigate(["/home"]);
+  }
+
+  // Funktion som loggar ut och redirectar om token saknas eller är ogiltig
+  handleAuthError(error: any) {
+    if (error.status === 401 || error.status === 403) {
+      this.logout();
+    }
   }
 }
