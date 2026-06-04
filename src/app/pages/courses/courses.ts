@@ -6,8 +6,8 @@ import { SubjectFilter } from '../../shared/components/subject-filter/subject-fi
 import { ScheduleService } from '../../core/services/schedule.service';
 import { Course } from '../../core/models/course';
 import { ScheduledCourse } from '../../core/models/scheduled-course';
-import { AddCourseResponse } from '../../core/models/add-course-response';
 import { SortData } from '../../shared/components/sort-data/sort-data';
+import { ApiResponse } from '../../core/models/api-response';
 
 @Component({
   selector: 'app-courses',
@@ -110,7 +110,7 @@ export class Courses {
     }
 
     this.scheduleService.addCourse(courseData).subscribe({
-      next: (response: AddCourseResponse) => {
+      next: (response: ApiResponse) => {
         this.message.set(response.message);
       },
 

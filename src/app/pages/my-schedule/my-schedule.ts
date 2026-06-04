@@ -2,6 +2,8 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { ScheduleService } from '../../core/services/schedule.service';
 import { CourseCard } from '../../shared/components/course-card/course-card';
 import { SortData } from '../../shared/components/sort-data/sort-data';
+import { ScheduledCourse } from '../../core/models/scheduled-course';
+import { CourseService } from '../../core/services/course.service';
 
 @Component({
   selector: 'app-my-schedule',
@@ -75,4 +77,23 @@ export class MySchedule {
     }, 0); // startvärde för summeringen
   });
 
+  // ta bort kurs
+  deleteCourse(scheduledCourse: ScheduledCourse) {
+    // anropa service för att ta bort kurs från databasen
+    this.scheduleService.deleteCourse(scheduledCourse).subscribe({
+      // om req lyckas
+      next: () => {
+        this.message.set("Kurs borttagen.");
+        // fulfix-- ladda om sidan
+        window.location.reload();
+      },
+      // felhantering
+      error: (error) => {
+        // auth-fel, logga ut och redirect -fixa sen!
+        //this.scheduleService.authService.handleAuthError(error);
+        this.message.set(error.error?.message ?? "Kunde inte ta bort kursen.");
+      }
+    });
+
+  }
 }

@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, Signal } from '@angular/core';
 import { ScheduledCourse } from '../models/scheduled-course';
 import { Observable } from 'rxjs';
-import { AddCourseResponse } from '../models/add-course-response';
+import { ApiResponse } from '../models/api-response';
+
 import { Course } from '../models/course';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -31,9 +32,18 @@ export class ScheduleService {
   }
 
   // lägg till kurs
-  addCourse(scheduledCourse: ScheduledCourse): Observable<AddCourseResponse> {
+  addCourse(scheduledCourse: ScheduledCourse): Observable<ApiResponse> {
 
     // skicka POST-request med auth headers
-    return this.http.post<AddCourseResponse>(this.url + '/courses', scheduledCourse, { headers: this.getHeaders() });
+    return this.http.post<ApiResponse>(this.url + '/courses', scheduledCourse, { headers: this.getHeaders() });
   }
+
+  // ta bort kurs
+  deleteCourse(scheduledCourse: ScheduledCourse): Observable<ApiResponse> {
+
+    // skicka DELETE-request med auth headers
+    return this.http.delete<ApiResponse>(this.url + '/courses/' + scheduledCourse.courseCode,
+      { headers: this.getHeaders() });
+  }
+
 }
