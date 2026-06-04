@@ -7,16 +7,17 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class CourseService {
-  private url: string = "https://matdah.github.io/DT208G---Programmering-i-TypeScript/Moment%205%20-%20Projekt/miun_courses.json";
+  private url: string = "miun_courses.json";
   private http = inject(HttpClient) // aktiverar HttpClient
 
   courses = signal<Course[]>([]); // signal som ska lagra kurserna
   loading = signal<boolean>(false); // signal som håller koll på om data laddas
+  error = signal<string | null>(null); // felhantering
 
-  // felhantering
-  error = signal<string | null>(null);
-
+  // Ladda in kurser
   async loadCourses(): Promise<void> {
+    if (this.courses().length > 0) return; // avbryt om kurser redan är inladdade
+
     this.loading.set(true); // sätt igång laddning
     this.error.set(null); // nollställ fel
 
@@ -28,11 +29,13 @@ export class CourseService {
       //Sparar kurserna i signalen
       this.courses.set(courses);
 
+    } catch (err) {
+      console.error(err);
+      this.error.set("Kunde inte hämta kurser.");
+
     } finally {
       // avsluta laddning genom att sätta booleanen till false
       this.loading.set(false);
-
     }
-
   }
 }

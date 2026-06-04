@@ -1,6 +1,7 @@
 <div class="intro">
-<h2>Dina kurser</h2>
-<p>Bygg ditt schema genom att lägga till eller ta bort kurser. Just nu har du <strong>{{ totalPoints() }}</strong> poäng.</p>
+  <h2>Dina kurser</h2>
+  <p>Bygg ditt schema genom att lägga till eller ta bort kurser. Just nu har du <strong>{{ totalPoints() }}</strong>
+    poäng.</p>
 </div>
 <p class="welcome">{{ message() }}</p>
 
@@ -8,8 +9,7 @@
 </app-sort-data>
 
 @for (course of sortedCourses(); track course.courseCode) {
-  <app-course-card
-    [course]="course"
-    [showAddButton]="false">
-  </app-course-card>
+<app-course-card 
+[course]="course" [showAddButton]="false" (deleteCourse)="deleteCourse($event)">
+</app-course-card>
 }
