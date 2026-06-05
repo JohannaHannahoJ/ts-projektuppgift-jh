@@ -19,14 +19,13 @@ nav a {
 }
 
 nav a.current {
-    border-bottom: 2px solid var(--regtwo);
-    color: var(--regtwo);
+    border-bottom: 2px solid var(--text);
     font-size: 1.2rem;
 }
 
 nav li a:focus-visible,
 nav li a:hover {
-    color: var(--regone);
+    color: var(--wakeup);
 }
 
 nav button {

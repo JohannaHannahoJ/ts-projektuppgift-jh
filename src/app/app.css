@@ -4,7 +4,7 @@
     align-items: center;
 
     padding: 1rem 2rem;
-    
+
     border-bottom: 2px solid var(--regone);
 }
 
@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    min-width: 0;
 }
 
 h1 {
@@ -29,7 +30,7 @@ h1 {
         text-align: center;
     }
 
-    .branding {
+    .brand {
         flex-direction: column;
     }
 
