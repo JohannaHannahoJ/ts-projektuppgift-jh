@@ -1,43 +1,45 @@
-<div class="intro">
-  <h2>Våra kurser</h2>
-  <p>
-    Som student på MDV väljer du fritt mellan våra kurser.
-  </p>
-</div>
+<div class="content-container">
+  <div class="intro">
+    <h2>Våra kurser</h2>
+    <p>
+      Som student på MDV väljer du fritt mellan våra kurser.
+    </p>
+  </div>
 
-<div class="filter-row">
-  <app-search-bar (searchChange)="updateSearch($event)">
-  </app-search-bar>
+  <div class="filter-row">
+    <app-search-bar (searchChange)="updateSearch($event)">
+    </app-search-bar>
 
-  <app-subject-filter [subjects]="subjects()" (subjectChange)="updateSubject($event)">
-  </app-subject-filter>
-</div>
+    <app-subject-filter [subjects]="subjects()" (subjectChange)="updateSubject($event)">
+    </app-subject-filter>
+  </div>
 
-<app-sort-data (sortChange)="setSort($event)">
-</app-sort-data>
+  <app-sort-data (sortChange)="setSort($event)">
+  </app-sort-data>
 
-@if (message()) {
-<div class="popup-message">
-  {{ message() }}
-</div>
-}
-
-<p class="course-count">
-  @if (totalCourses() === allCourses()) {
-  Visar {{ allCourses() }} kurser.
-  } @else {
-  Visar {{ totalCourses() }} kurser av {{ allCourses() }} kurser.
+  @if (message()) {
+  <div class="popup-message">
+    {{ message() }}
+  </div>
   }
-</p>
 
-<!-- trackar på både kurskod och ämne, eftersom kurskod inte är unik-->
-@for (course of pagedCourses(); track course.courseCode + course.subject) {
-<app-course-card [course]="course" [showAddButton]="true" (addCourse)="addCourseToSchedule($event)">
-</app-course-card>
-}
+  <p class="course-count">
+    @if (totalCourses() === allCourses()) {
+    Visar {{ allCourses() }} kurser.
+    } @else {
+    Visar {{ totalCourses() }} kurser av {{ allCourses() }} kurser.
+    }
+  </p>
 
-<app-pagination 
-  [currentPage]="currentPage()"
-  [pageCount]="pageCount()"
-  (pageChange)="currentPage.set($event)">
-</app-pagination>
+  <!-- trackar på både kurskod och ämne, eftersom kurskod inte är unik-->
+  @for (course of pagedCourses(); track course.courseCode + course.subject) {
+  <app-course-card [course]="course" [showAddButton]="true" (addCourse)="addCourseToSchedule($event)">
+  </app-course-card>
+  }
+
+  <app-pagination 
+    [currentPage]="currentPage()"
+    [pageCount]="pageCount()"
+    (pageChange)="currentPage.set($event)">
+  </app-pagination>
+</div>

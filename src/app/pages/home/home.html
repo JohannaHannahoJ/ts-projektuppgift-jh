@@ -1,1 +1,31 @@
-<p>home works!</p>
+<div class="home-grid">
+    <div class="home-text">
+        <h2>När du vill. Hur du vill. Var du vill.</h2>
+        <p class="ingress">
+            Välkommen till MittDigiVersitetet - en flexibel kursplattform
+            där du själv styr din utbildning.
+        </p>
+        <p>
+            Skapa ett konto, logga in och bygg din egen studieplan genom att
+            välja bland våra kurser. Här hittar du allt från grundkurser
+            till mer avancerade ämnen inom flera områden.
+        </p>
+
+        <div class="stats">
+            <div class="stat-card">
+                <p>Välj mellan</p>
+                <h3>{{ totalCourses() }}</h3>
+                <p>kurser</p>
+            </div>
+
+            <div class="stat-card">
+                <p>Studera</p>
+                <h3>{{ totalSubjects() }}</h3>
+                <p>ämnen</p>
+            </div>
+        </div>
+    </div>
+    <div class="home-carousel">
+        <app-carousel></app-carousel>
+    </div>
+</div>
