@@ -6,10 +6,10 @@
 </div>
 
 <div class="filter-row">
-  <app-search-bar (searchChange)="filterText.set($event)">
+  <app-search-bar (searchChange)="updateSearch($event)">
   </app-search-bar>
 
-  <app-subject-filter [subjects]="subjects()" (subjectChange)="selectedSubject.set($event)">
+  <app-subject-filter [subjects]="subjects()" (subjectChange)="updateSubject($event)">
   </app-subject-filter>
 </div>
 
@@ -31,7 +31,13 @@
 </p>
 
 <!-- trackar på både kurskod och ämne, eftersom kurskod inte är unik-->
-@for (course of sortedCourses(); track course.courseCode + course.subject) {
+@for (course of pagedCourses(); track course.courseCode + course.subject) {
 <app-course-card [course]="course" [showAddButton]="true" (addCourse)="addCourseToSchedule($event)">
 </app-course-card>
 }
+
+<app-pagination 
+  [currentPage]="currentPage()"
+  [pageCount]="pageCount()"
+  (pageChange)="currentPage.set($event)">
+</app-pagination>

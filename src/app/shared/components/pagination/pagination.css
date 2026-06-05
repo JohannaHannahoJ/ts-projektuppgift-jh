@@ -1,0 +1,42 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-top: 2rem;
+}
+
+.pagination button {
+    padding: 0.5rem 0.9rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background: var(--bg);
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pagination-info {
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .pagination {
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+    }
+
+    .pagination button {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+    }
+}
