@@ -8,10 +8,11 @@ import { Course } from '../../core/models/course';
 import { ScheduledCourse } from '../../core/models/scheduled-course';
 import { SortData } from '../../shared/components/sort-data/sort-data';
 import { ApiResponse } from '../../core/models/api-response';
+import { Pagination } from '../../shared/components/pagination/pagination';
 
 @Component({
   selector: 'app-courses',
-  imports: [CourseCard, SearchBar, SubjectFilter, SortData],
+  imports: [CourseCard, SearchBar, SubjectFilter, SortData, Pagination],
   templateUrl: './courses.html',
   styleUrl: './courses.css',
 })
@@ -29,9 +30,24 @@ export class Courses {
   selectedSubject = signal("all");
   // signal för meddelanden
   message = signal("");
+  //signaler för paginering
+  currentPage = signal(1);
+  pageSize = 10;
 
   ngOnInit() {
     this.courseService.loadCourses();
+  }
+
+  // bläddra till första sida vid uppdaterad sökning
+  updateSearch(text: string) {
+    this.filterText.set(text);
+    this.currentPage.set(1);
+  }
+
+  // bläddra till första sida vid uppdaterad ämnesfilter
+  updateSubject(subject: string) {
+    this.selectedSubject.set(subject);
+    this.currentPage.set(1);
   }
 
   // Funktion som körs när användaren klickar på en av sorteringsknapparna
@@ -45,7 +61,6 @@ export class Courses {
       this.sortField.set(field);
       this.sortDirection.set("asc");
     }
-
   }
 
   // returnerar en sorterad och filtrerad kopia av kurslistan
@@ -82,7 +97,20 @@ export class Courses {
       // fallande ordning
       return a[field] < b[field] ? 1 : -1;
     });
+  });
 
+  // beräknar totalt antal sidor till paginering
+  pageCount = computed(() =>
+    Math.ceil(this.sortedCourses().length / this.pageSize)
+  );
+
+  // Skapa paginerad lista, returnerar kurser för aktuell sida
+  pagedCourses = computed(() => {
+    // första index på sidan
+    const start = (this.currentPage() - 1) * this.pageSize;
+    // sista index på sidan
+    const end = start + this.pageSize;
+    return this.sortedCourses().slice(start, end);
   });
 
   // skapa en array med alla ämnen

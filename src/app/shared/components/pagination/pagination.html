@@ -1,1 +1,9 @@
-<p>pagination works!</p>
+<div class="pagination">
+    <button (click)="firstPage() "aria-label="Första sidan">«</button>
+    <button (click)="previousPage()" aria-label="Föregående sida" [disabled]="currentPage === 1">‹</button>
+
+    <span>Sida {{ currentPage }} av {{ pageCount }}</span>
+
+    <button (click)="nextPage()" aria-label="Nästa sida" [disabled]="currentPage === pageCount">›</button>
+    <button (click)="lastPage()" aria-label="Sista sidan">»</button>
+</div>
