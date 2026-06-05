@@ -1,55 +1,58 @@
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --text: #000000;
-    --bg: #f1f1f1;
-    --highlight: #d9d9d9;
-    --regone: #11fffb;
-    --regtwo: #f88f1f;
-    --wakeup: #df50c5;
+  --text: #000000;
+  --bg: #f1f1f1;
+  --highlight: #d9d9d9;
+  --regone: #11fffb;
+  --regtwo: #f88f1f;
+  --wakeup: #df50c5;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    margin: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  margin: 0;
 }
 
 app-root {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
-    color: var(--text);
-    background-color: var(--bg);
-    font-family: "Marcellus", serif;
-    line-height: 1.5;
+  color: var(--text);
+  background-color: var(--bg);
+  font-family: "Marcellus", serif;
+  line-height: 1.5;
 }
 
 main {
-    flex: 1;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem;
+  flex: 1;
+  width: 100%;
+  padding: 2rem;
+}
+
+.content-container {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 select:focus-visible {
-    outline: 2px solid var(--wakeup);
-    outline-offset: 3px;
+  outline: 2px solid var(--wakeup);
+  outline-offset: 3px;
 }
 
 .intro {
@@ -64,7 +67,7 @@ select:focus-visible {
 .intro p {
   max-width: 60ch;
   line-height: 1.6;
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 .filter-row {

@@ -34,10 +34,6 @@ export class Courses {
   currentPage = signal(1);
   pageSize = 10;
 
-  ngOnInit() {
-    this.courseService.loadCourses();
-  }
-
   // bläddra till första sida vid uppdaterad sökning
   updateSearch(text: string) {
     this.filterText.set(text);
